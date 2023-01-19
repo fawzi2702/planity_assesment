@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# Planity Assesment
+This program provides a daily calendar and avoiding visual overlaps with the 2 following constraints:
+1.  Every overlapping event should have the same width as every event it overlaps
+2.  Every event should use the maximum width available while satisfying constraint 1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+features:
+- Fetch events from an API endpoint (or if you don't have from *public* project folder)
+- Validation of fetched datas
+- Render the events avoiding visual overlaps and respecting the above constraints
+- Generate random events background color
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+ **0. Requirements**
+	First of all, you must have *NodeJS*  and *yarn* installed on your machine.
 
-### `yarn start`
+**1. Environment variables**
+	This program need some environment variables that must be specified in *.env* file, that's in the root of the progam
+	Here are the required environment variables:
+| name | type | description |
+|--|--|--|
+| `REACT_APP_CALENDAR_EVENT_ENDPOINT` | string | the URL to fetch calendar events with *GET* method. If you don't have one you can use `http://localhost:3000/input.json` that fetch events from `/public/input.json` |
+| `REACT_APP_CALENDAR_DAY_START` | number | Calendar day start time in minutes (*ex: 9:00 am equal to 540*) |
+| `REACT_APP_CALENDAR_DAY_END` | number | Calendar day end time in minutes (*ex: 9:00 pm equal to 1260*) |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**2. Install packages**
+In your terminal, run the following:
+	
+	yarn install
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Modifying input events
+The input must be an array of the following structure:
+	
+	{
+	  id: 1,
+	  start: '15:00', // The event starts at 03:00 pm
+	  duration: 90 // The duration is expressed in minutes
+	}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Be careful, of this:
+- *id* must be unique by array.
+- *start* must be between `REACT_APP_CALENDAR_DAY_START` and `REACT_APP_CALENDAR_DAY_END`
+- event cannot end after `REACT_APP_CALENDAR_DAY_END`
 
-### `yarn build`
+If you have chosen to use events from `/public/input.json` you can modify or add events from this file.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Otherwise if you have chosen to use events from your API endpoint, so you can modify or add events from it
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Run development server
+**Once** you have installed the application, you can run the development server with the following command:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+	yarn start
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+***Enjoy !***
