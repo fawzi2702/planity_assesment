@@ -47,7 +47,7 @@ export const Event: FC<Props> = ({ calendarEvent }) => {
         position: 'absolute',
         top: position.y,
         left: position.x,
-        background: calendarEvent.color,
+        background: calendarEvent.backgroundColor,
       }}>
       <span>{calendarEvent.id}</span>
     </div>

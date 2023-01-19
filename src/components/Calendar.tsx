@@ -10,10 +10,6 @@ export const Calendar: FC = () => {
     getCalendarEvents()
   }, [])
 
-  useEffect(() => {
-    console.log('🚀 ~ calendarEvents', calendarEvents)
-  }, [calendarEvents])
-
   return (
     <div className="calendar-container">
       {calendarEvents.map((calendarEvent) => (

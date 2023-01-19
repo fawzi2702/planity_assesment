@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react'
 
 import { fetchCalendarEvents } from '../api/event.api'
 import { CalendarEvent } from '../types/event.type'
-import { computeCalendarEventsGroups } from '../utils/event'
+import { computeCalendarEventsLayout } from '../utils/event'
 
 export const useCalendarStore = () => {
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
@@ -10,7 +10,7 @@ export const useCalendarStore = () => {
   const getCalendarEvents = async () => {
     try {
       const calendarEventsResponse = await fetchCalendarEvents()
-      const formattedEvents = computeCalendarEventsGroups(calendarEventsResponse)
+      const formattedEvents = computeCalendarEventsLayout(calendarEventsResponse)
       setCalendarEvents(formattedEvents)
     } catch (error) {
       // DO NOTHING
